@@ -5,7 +5,10 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AstractPage {
 
@@ -95,6 +98,12 @@ public class AstractPage {
 	public boolean isControlSelected(WebDriver driver, String locator) {
 		WebElement element = driver.findElement(By.xpath(locator));
 		return element.isSelected();
+	}
+	
+	public void waitForControlVisible(WebDriver driver, String locator) { 
+		By by = By.xpath(locator);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 	}
 
 
